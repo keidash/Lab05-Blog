@@ -17,9 +17,9 @@ const getAll = async (ctx: RouterContext, next: any) => {
 
 const createArticle = async (ctx: RouterContext, next: any) => {
   let c: any = ctx.request.body;
-  let title = c.titles;
+  let titles = c.titles;
   let fullText = c.fullText;
-  let newArticle = {title: title, fullText: fullText};
+  let newArticle = {titles: titles, fullText: fullText};
   articles.push(newArticle);
   ctx.status = 201;
   ctx.body = newArticle;
@@ -46,8 +46,8 @@ const deleteArticle = async (ctx: RouterContext, next: any) => {
 
 router.get('/', getAll);
 router.post('/', bodyParser(), createArticle);
-router.get('/:id([0-9]{1, })', getById);
-router.put('/:id', updateArticle);
-router.delete('/:id', deleteArticle);
+router.get('/:id([0-9]{1,})', getById);
+router.put('/:id([0-9]{1,})', updateArticle);
+router.delete('/:id([0-9]{1,})', deleteArticle);
 
 export { router };
